@@ -1,0 +1,51 @@
+{
+  "name": "real-manager",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:dev": "webpack --entry ./src/index.js --output ./public/scripts/app.js",
+    "start": "webpack-dev-server --open --mode=development",
+    "server": "nodemon src/api/app.js --exec babel-node",
+    "build": "webpack --mode production",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@material-ui/core": "4.0.0",
+    "@material-ui/icons": "4.2.1",
+    "babel-loader": "^8.0.6",
+    "express": "^4.17.1",
+    "mini-css-extract-plugin": "^0.7.0",
+    "nodemon": "^1.19.1",
+    "path": "^0.12.7",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.4.1",
+    "react-number-format": "^4.0.5",
+    "react-router-dom": "^4.3.1",
+    "recompose": "^0.30.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
