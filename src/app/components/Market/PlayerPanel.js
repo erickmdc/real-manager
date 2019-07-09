@@ -9,12 +9,24 @@ import PlayerPanelDetails from './PlayerPanelDetails';
 import styles from '../utils/styles';
 
 class PlayerPanel extends Component {
+  state = {
+    match: {}
+  }
+
+  handleOpenPanel = (expanded, player) => {
+    if (expanded) {
+      fetch(`http://localhost:4500/api/matches/${player.teamName}`)
+        .then(res => res.json())
+        .then(matches => this.setState({ match: matches[0] }))
+    }
+  }
 
   render() {
     const { player, classes, handleSell } = this.props;
+    const { match } = this.state;
 
     return (
-      <ExpansionPanel style={{ marginLeft: '-12px', marginRight: '-12px', }}>
+      <ExpansionPanel onChange={(evt, open) => this.handleOpenPanel(open, player)} style={{ marginLeft: '-12px', marginRight: '-12px', }}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -32,7 +44,7 @@ class PlayerPanel extends Component {
                     {player.name}
                   </Typography>
                   <Typography className={classes.pos} variant="subtitle1" color="textSecondary">
-                    {player.team}
+                    {player.teamName}
                   </Typography>
                 </Grid>
               </Grid>
@@ -88,7 +100,7 @@ class PlayerPanel extends Component {
           </Grid>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={{ padding: 0 }}>
-          <PlayerPanelDetails />
+          <PlayerPanelDetails match={match} />
         </ExpansionPanelDetails>
         <ExpansionPanelActions>
           <Grid container justify="flex-start">
@@ -97,7 +109,7 @@ class PlayerPanel extends Component {
                 <Typography>{"Habilidade: "}</Typography>
               </Grid>
               <Grid item lg={7}>
-                <Typography inline>{"Chute forte pra fora"}</Typography>
+                <Typography display="inline">{"Chute forte pra fora"}</Typography>
               </Grid>
             </Hidden>
             <Grid item xs={12} sm={12} lg={4}>

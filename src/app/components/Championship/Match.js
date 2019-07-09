@@ -3,15 +3,13 @@ import {
   withStyles, Grid, Typography, Avatar, Paper,
 } from '@material-ui/core';
 import styles from '../utils/styles';
-
-export default withStyles(styles)(({ classes,boxShadow, noMargin }) =>
+import moment from 'moment';
+moment.locale('pt-br');
+export default withStyles(styles)(({ classes, boxShadow, noMargin, match }) =>
   <Paper style={boxShadow === 'none' ? {boxShadow: 'none'} : {}}>
     <Grid container spacing={2} alignItems="center" justify="center" style={noMargin ? {margin: '0px'} : {}}>
-      <Grid item xs={3} sm={3} lg={3}></Grid>
-      <Grid item xs={6} sm={6} lg={6}>
-        <Typography variant="subtitle2" align="center" noWrap>Dom, 27/03 16:00h</Typography>
-      </Grid>
-      <Grid item xs={3} sm={3} lg={3}>
+      <Grid item xs={12} sm={12} lg={12}>
+        <Typography variant="subtitle2" align="center" noWrap>{moment(match.date).format('LLLL')}</Typography>
       </Grid>
       <Grid item sm={2} xs={2} lg={2}>
         <Typography variant="subtitle2" align="center">1º</Typography>
@@ -21,7 +19,7 @@ export default withStyles(styles)(({ classes,boxShadow, noMargin }) =>
       </Grid>
       <Grid item sm={4} xs={4} lg={4}>
         <Typography variant="h5" style={{ textAlign: 'center' }}>
-          {"3 X 0"}
+          {`${match.homeScore} x ${match.awayScore}`}
         </Typography>
       </Grid>
       <Grid item sm={2} xs={2} lg={2}>
@@ -31,10 +29,10 @@ export default withStyles(styles)(({ classes,boxShadow, noMargin }) =>
         <Typography variant="subtitle2" align="center">10º</Typography>
       </Grid>
       <Grid item sm={6} xs={6} lg={6}>
-        <Typography variant="subtitle1" align="center" noWrap>Barcelona</Typography>
+        <Typography variant="subtitle1" align="center" noWrap>{match.homeName}</Typography>
       </Grid>
       <Grid item sm={6} xs={6} lg={6}>
-        <Typography variant="subtitle1" align="center" noWrap>Manchester United</Typography>
+        <Typography variant="subtitle1" align="center" noWrap>{match.awayName}</Typography>
       </Grid>
     </Grid>
   </Paper>

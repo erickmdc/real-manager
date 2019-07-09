@@ -10,7 +10,7 @@ import styles from '../utils/styles';
 class Squad extends Component {
 
     testFetch() {
-        fetch('https://store-tcc.herokuapp.com/players')
+        fetch('http://localhost:4500/api/players')
             .then(res => res.json())
             .then(p => {
                 let x = p;

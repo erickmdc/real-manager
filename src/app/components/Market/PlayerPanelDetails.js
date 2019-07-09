@@ -20,7 +20,7 @@ class PlayerPanelDetails extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, match } = this.props;
     const { tab } = this.state;
 
     return (
@@ -28,7 +28,7 @@ class PlayerPanelDetails extends Component {
         <Hidden smDown>
           <Grid container spacing={2} alignItems="center" justify="center">
             <Grid item lg={6}>
-              <Match boxShadow={'none'}/>
+              <Match boxShadow={'none'} match={match} />
             </Grid>
             <Grid item lg={6}>
               <Paper style={{ maxHeight: '200px', overflowY: 'auto', boxShadow: 'none' }}>
@@ -50,7 +50,7 @@ class PlayerPanelDetails extends Component {
               <Paper>
                 <Typography variant="h6">Próxima partida</Typography>
                 <Divider variant="inset" />
-                <Match noMargin={true}/>
+                <Match noMargin={true} />
               </Paper>
             }
             {tab === 1 &&

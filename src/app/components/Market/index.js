@@ -179,10 +179,10 @@ class Market extends Component {
         fetch('https://store-tcc.herokuapp.com/mySquad/1')
             .then(res => res.json())
             .then(squad => this.setState({ squad: squad.players }))
-        fetch('https://store-tcc.herokuapp.com/players')
+        fetch('http://localhost:4500/api/players')
             .then(res => res.json())
             .then(players => this.setState({ players }))
-        fetch('https://store-tcc.herokuapp.com/teams')
+        fetch('http://localhost:4500/api/teams')
             .then(res => res.json())
             .then(teams => this.setState({ teams }))
     }

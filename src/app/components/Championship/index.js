@@ -68,16 +68,23 @@ function Footer() {
 
 class Championship extends Component {
   state = {
-    tab: 1
+    tab: 1,
+    matches: []
   }
 
   handleChange = (event, tab) => {
     this.setState({ tab });
   }
 
+  componentDidMount() {
+    fetch('http://localhost:4500/api/matches')
+      .then(res => res.json())
+      .then(matches => this.setState({ matches }))
+  }
+
   render() {
     const { classes } = this.props;
-    const { tab } = this.state;
+    const { tab, matches } = this.state;
     return (
       <Fragment>
         <Hidden mdDown>
@@ -93,7 +100,7 @@ class Championship extends Component {
             </Grid>
             <Grid item sm={12} lg={4}>
               <Paper className={classes.defaultPaper}>
-                <Matches />
+                {matches.length > 0 && <Matches matches={matches}/>}
               </Paper>
             </Grid>
           </Grid>
@@ -121,7 +128,7 @@ class Championship extends Component {
                   </Fragment>}
                 {tab === 1 &&
                   <Paper>
-                    <Matches />
+                    {matches.length > 0 && <Matches matches={matches}/>}
                   </Paper>}
               </Grid>
             </Grid>
