@@ -17,7 +17,7 @@ class PlayerPanel extends Component {
     if (expanded) {
       fetch(`http://localhost:4500/api/matches/${player.teamName}`)
         .then(res => res.json())
-        .then(matches => this.setState({ match: matches[0] }))
+        .then(match => this.setState({ match }))
     }
   }
 
@@ -113,7 +113,7 @@ class PlayerPanel extends Component {
               </Grid>
             </Hidden>
             <Grid item xs={12} sm={12} lg={4}>
-              <Button onClick={() => handleSell(player.id)} variant="contained" color="secondary" fullWidth>
+              <Button onClick={() => handleSell(player._id)} variant="contained" color="secondary" fullWidth>
                 {"Vender"}
               </Button>
             </Grid>

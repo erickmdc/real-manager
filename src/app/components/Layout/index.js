@@ -78,6 +78,9 @@ class Layout extends Component {
                     <MenuItem component={Link} to="/championship" selected={'/championship' === pathname}>
                         <Typography variant="body2">Campeonato</Typography>
                     </MenuItem>
+                    <MenuItem component={Link} to="/admin" selected={'/admin' === pathname}>
+                        <Typography variant="body2">Admin</Typography>
+                    </MenuItem>
                 </MenuList>
             </div>
         );

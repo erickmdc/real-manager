@@ -1,16 +1,12 @@
 import express from 'express';
-
-const matchesRepo = {};
+import Matches from '../models/matches';
+const matchesRepo = new Matches();
 const router = express.Router();
 
 router.get('/', (req, res) => {
   return matchesRepo.get()
-  .then(snapshot => {
-    const matches = snapshot.docs.map(doc => {
-      const data = doc.data();
-      return { ...data, id: doc.id, date: data.date.toDate() };
-    });
-    res.send(matches);
+  .then(result => {
+    res.send(result);
   }).catch(err => {
     console.log(err.message)
     res.send(err.message);
@@ -18,17 +14,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:teamName', (req, res) => {
-  const name = req.params.teamName;
-  return matchesRepo.where('homeName', '==', name)
-  .where('date', '>=', new Date())
-  .orderBy('date')
-  // .where('awayName', '==', name)
-  .get()
-  .then(snapshot => {
-    const matches = snapshot.docs.map(doc => {
-      return { id: doc.id, ...doc.data() };
-    });
-    res.send(matches.find(() => true));
+  const { teamName } = req.params;
+  return matchesRepo.getTeamNextMatch(teamName)
+  .then(result => {
+    res.send(result);
   }).catch(err => {
     console.log(err.message)
     res.send(err.message);
@@ -37,10 +26,12 @@ router.get('/:teamName', (req, res) => {
 
 router.post('/', (req, res) => {
   const { matches } = req.body;
-  Promise.all(matches.map(match => {
-    console.log(`inserting ${match.homeName} x ${match.awayName}`);
-    return matchesRepo.doc().set(match);
-  })).then(result => {
+  return Promise.all(matches.map(match => {
+    console.log(`salvando partida ${match.home.teamName} x ${match.away.teamName}`);
+    return matchesRepo.save(match)
+  }))
+  .then(result => {
+    console.log(result);
     res.send(result);
   }).catch(err => {
     console.log(err.message)

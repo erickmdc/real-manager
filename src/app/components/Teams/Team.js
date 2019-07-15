@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import { Folder } from "@material-ui/icons";
 
-export default ({ team: { id, name, squad }, players }) =>
+export default ({ team: { _id: id, name, squad }, players }) =>
     <Fragment>
         {id ?
             <Fragment>

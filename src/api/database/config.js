@@ -21,7 +21,7 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-const host = 'mongodb+srv://realmanager:UNKDZ8lQhjiGYr54@lfu1-mno7t.mongodb.net/test?retryWrites=true&w=majority';
+const host = 'mongodb+srv://realmanager:UNKDZ8lQhjiGYr54@lfu1-mno7t.mongodb.net/Collections?retryWrites=true&w=majority';
 
 mongoose.connect(host, { useNewUrlParser: true });
 

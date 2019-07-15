@@ -32,7 +32,7 @@ class Players extends Component {
     handlePlayerSelect = id => {
         const { players } = this.state;
         this.setState({
-            player: players.find(p => p.id === id),
+            player: players.find(p => p._id === id),
             openMobileDialog: true
         })
     }
@@ -78,7 +78,7 @@ class Players extends Component {
                                         <em>Nenhum</em>
                                     </MenuItem>
                                     {teams.map(team => {
-                                        return <MenuItem key={team.id} value={team.name}>
+                                        return <MenuItem key={team._id} value={team.name}>
                                             {team.name}
                                         </MenuItem>
                                     })}
@@ -86,7 +86,7 @@ class Players extends Component {
                             </FormControl>
                             <List component="nav">
                                 {this.filterPlayers(players).map(player => {
-                                    return <ListItem button key={player.id} onClick={() => this.handlePlayerSelect(player.id)}>
+                                    return <ListItem button key={player._id} onClick={() => this.handlePlayerSelect(player._id)}>
                                         <ListItemAvatar>
                                             <Avatar>
                                                 <Folder />

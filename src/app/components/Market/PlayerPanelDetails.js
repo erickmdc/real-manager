@@ -50,7 +50,7 @@ class PlayerPanelDetails extends Component {
               <Paper>
                 <Typography variant="h6">Próxima partida</Typography>
                 <Divider variant="inset" />
-                <Match noMargin={true} />
+                <Match noMargin={true} match={match} />
               </Paper>
             }
             {tab === 1 &&

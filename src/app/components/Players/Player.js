@@ -6,7 +6,7 @@ import {
 import { MonetizationOn, Group, Pets, Person } from "@material-ui/icons";
 import styles from '../utils/styles';
 
-export default withStyles(styles)(({ player: { id, name, price, team, position }, classes }) =>
+export default withStyles(styles)(({ player: { _id: id, name, price, photo, teamName, position }, classes }) =>
     <Fragment>
         {id ?
             <Fragment>
@@ -14,7 +14,9 @@ export default withStyles(styles)(({ player: { id, name, price, team, position }
                     <Grid container>
                         <Grid item xs={12} style={{ marginBottom: 20 }}>
                             <ListItem>
-                                <Avatar className={classes.AvatarElement} src="https://ssl.gstatic.com/images/branding/product/2x/avatar_circle_blue_512dp.png" />
+                                <Avatar className={classes.AvatarElement}
+                                    src={photo ? photo : "https://ssl.gstatic.com/images/branding/product/2x/avatar_circle_blue_512dp.png"}
+                                />
                             </ListItem>
                         </Grid>
                         <Grid item xs={6}>
@@ -32,7 +34,7 @@ export default withStyles(styles)(({ player: { id, name, price, team, position }
                                 <Avatar>
                                     <Group />
                                 </Avatar>
-                                <ListItemText className={classes.ListItemText} primary={team} secondary="Time" />
+                                <ListItemText className={classes.ListItemText} primary={teamName} secondary="Time" />
                             </ListItem>
                         </Grid>
                         <Grid item xs={6}>

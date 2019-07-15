@@ -20,7 +20,7 @@ class Teams extends Component {
     handleSelect = id => {
         const { teams } = this.state;
         this.setState({
-            team: teams.find(p => p.id === id),
+            team: teams.find(p => p._id === id),
             openMobileDialog: true
         })
     }
@@ -57,7 +57,7 @@ class Teams extends Component {
                             <Typography variant="h5">Time</Typography>
                             <List component="nav">
                                 {teams.map(team => {
-                                    return <ListItem button key={team.id} onClick={() => this.handleSelect(team.id)}>
+                                    return <ListItem button key={team._id} onClick={() => this.handleSelect(team._id)}>
                                         <ListItemAvatar>
                                             <Avatar>
                                                 <Folder />
